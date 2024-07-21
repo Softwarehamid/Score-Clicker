@@ -12,7 +12,7 @@ clock = pygame.time.Clock()
 pos = pygame.Vector2(random.randrange(100, 1100), random.randrange(100, 700))
 
 # Time variables
-spawn_rate = 500 # Spawn rate in milliseconds (1000 ms = 1 second)
+spawn_rate = 1000 # Spawn rate in milliseconds (1000 ms = 1 second)
 last_spawn_time = pygame.time.get_ticks()  # Get the current time in milliseconds
 
 while running:
@@ -25,11 +25,20 @@ while running:
 
     # Check if it's time to spawn a new circle
     if current_time - last_spawn_time > spawn_rate:
-        pos = pygame.Vector2(random.randrange(100, 1100), random.randrange(100, 700))
-        last_spawn_time = current_time  # Update the last spawn time
+       pos = pygame.Vector2(random.randrange(100, 1100), random.randrange(100, 700))
+       last_spawn_time = current_time  # Update the last spawn time
 
     # Do logical updates here
     # ...
+
+    # event listener for click
+    ev = pygame.event.get()
+
+    for event in ev:
+
+        if event.type == pygame.MOUSEBUTTONUP:
+            poss = pygame.mouse.get_pos()
+            
 
     # Fill the display with a solid color
     screen.fill("white")
@@ -39,6 +48,8 @@ while running:
 
     # Render the graphics here
     # ...
+
+    
 
     # Refresh on-screen display
     pygame.display.flip()
